@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+      integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+      crossorigin="anonymous"
+    />
+    <style>
+      .is__red {
+        color: red;
+      }
+      .is__loading {
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row py-5">
+        <div id="root">
+          <div class="col-lg-12">
+            
+            <input type="text" v-model="inputName">
+            <br>
+            <br>
+            <button @click="addName" class="btn btn-info" :title='title'>Add Name</button>
+            <button @click="removeName" class="btn btn-warning">Remove last Name</button>
+            <ul>
+              <li v-for="name in names" v-text="name"></li>
+            </ul>
+
+            <hr>
+            <input type="checkbox" v-model="checked"> <br>
+            <button :disabled="!checked" :class="{ 'btn-success' : checked }" class="btn btn-primary" @click="sendMessage">Click me</button>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+    <script>
+      var app = new Vue({
+        el: "#root",
+          data: {
+            inputName: '',
+            names: [],
+            title: 'This is another title',
+            className: 'is__red',
+            isLoading: false,
+            checked: false
+          },
+          methods: {
+            addName() {
+              if(this.inputName == '') {
+                alert('Cant be empty')
+              } else {
+                this.names.push(this.inputName)
+                this.inputName = ''
+              }
+
+            },
+            sendMessage() {
+              alert('Your message has been sent, thank you')
+            },
+            removeName() {
+              let lastEntry = this.names[this.names.length - 1];
+              this.names.pop(lastEntry)
+
+            },
+            toggleClass() {
+              this.isLoading = true
+            }
+          },
+      })
+    </script>
+  </body>
+</html>
