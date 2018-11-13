@@ -10,12 +10,9 @@
     />
 
     <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
-      integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <style>
       .is__red {
         color: red;
@@ -23,27 +20,71 @@
       .is__loading {
         background: red;
       }
+      ul, li {
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        list-style-type: none;
+      }
+      .bg__primary {
+        background:#74b9ff;
+        color: #fff;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);        
+      }
+      .bg__warning {
+        background: #f9ca24;
+        color: #fff;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);    
+      }
+      .bg__success {
+        background: #badc58;
+        color: #fff;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.35); 
+      }
+      .btn {
+        font-size: .4rem;
+      }
+      .list-group-item {
+        border: none;
+      }
+      hr {
+        margin-bottom: 0;
+      }
+
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="row py-5">
-        <div id="root">
+    <div id="root">
+      <div class="container d-none">
+        <div class="row">
           <div class="col-lg-12">
-            
-            <input type="text" v-model="inputName">
-            <br>
-            <br>
-            <button @click="addName" class="btn btn-info" :title='title'>Add Name</button>
-            <button @click="removeName" class="btn btn-warning">Remove last Name</button>
+              <img :src="vueLogo" width="50" class="py-4" alt="">
+            <h2 style="display: inline-block">Vuejs examples</h2>
+          </div>
+        </div>
+        <hr>
+        <div class="row py-5">
+        
+          <div class="col-lg-12">
+            <h4>Arrays</h4>
+            <div class="form-group">
+              <button @click="addName" class="btn btn-success" :title='title'>Add name</button>
+              <button @click="removeName" class="btn btn-warning">Remove last name</button>
+            </div>
+            <div class="form-group">
+              <input type="text" v-model="inputName">
+            </div>
+
             <ul>
               <li v-for="name in names" v-text="name"></li>
-            </ul>
+            </ul>            
 
             <hr>
-            <input type="checkbox" v-model="checked"> <br>
-            <button :disabled="!checked" :class="{ 'btn-success' : checked }" class="btn btn-primary" @click="sendMessage">Click me</button>
-
+            <div class="form-group">
+              <input type="checkbox" v-model="checked"> <br>
+              <button :disabled="!checked" :class="{ 'btn-success' : checked }" class="btn btn-primary" @click="sendMessage">Click me</button>
+            </div>
 
           </div>
         </div>
@@ -51,15 +92,78 @@
     </div>
 
 
+    <div id="root__2">
+
+      <div class="container py-5">
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="card">
+              <h5 class="bg__primary p-3 card-title">All Tasks:</h5>
+            
+              <div class="card-body">
+                <ul class="list-group">
+                  <li class="list-group-item" v-for="task in tasks">
+                      <strong>{{ task.id }}.  {{ task.description }}</strong>
+                      <br>
+                      <small>{{ task.recap }}</small>
+                    <hr>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card">
+              <h5 class="bg__warning p-3 card-title">In progress:</h5>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li class="list-group-item"v-for="task in incompletTasks">
+                      {{ task.id }}. {{ task.description }}
+                      <button class="btn btn-success float-right" @click="task.completed = true"><i class="fas fa-chevron-right"></i></button>
+                      <hr>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card">
+              <h5 class="bg__success p-3 card-title">Completed:</h5>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li class="list-group-item"v-for="task in completeTasks">
+                      {{ task.id }}. {{ task.description }}
+                      <button class="btn btn-warning float-right" @click="task.completed = false"><i class="fas fa-chevron-left"></i></button>
+                      <hr>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>          
+        </div>
+      </div>
+
+    </div>  
+
+<p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis voluptates autem rerum, quae amet? Doloribus quo autem, similique dicta rem, suscipit modi exercitationem enim, numquam adipisci saepe voluptatum. Doloremque?</p>
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 
     <script>
+
+
+
+
+
       var app = new Vue({
         el: "#root",
           data: {
+            vueLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/220px-Vue.js_Logo_2.svg.png',
             inputName: '',
             names: [],
             title: 'This is another title',
@@ -90,6 +194,38 @@
             }
           },
       })
+    
+    
+   
+      var app2 = new Vue({
+        el:'#root__2',
+        data: {
+          message:'Hello world',
+          tasks: [
+            { id: 1, description: 'Go to the store', recap: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis voluptates autem rerum, quae amet? Doloribus quo autem, similique dicta rem, suscipit modi exercitationem enim, numquam adipisci saepe voluptatum.', working: true, completed: true},
+            { id: 2, description: 'Finish screencast', recap: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi omnis voptatum.', working: true, completed: false},
+            { id: 3, description: 'Make donation', recap: 'Lorem ipsum dolor sit sicing elit. Nisi omnis voptatum.', working: true, completed: true},
+            { id: 4, description: 'Clear inbox', recap: 'Etiam iaculis urna vel urna volutpat varius. Maecenas ultricies augue mattis, hendrerit magna nec, pellentesque magna. In eget libero a nibh aliquam fermentum ege', working: false, completed: false},
+            { id: 5, description: 'Make dinner', recap: 'Nam id ipsum sed mauris accumsan fringilla. Suspendisse placerat metus justo, vitae laoreet urna pla', working: true, completed: false}
+          ]
+        },
+        computed: {
+          workingOn() {
+            return this.tasks.filter(task => task.working)
+          },
+          incompletTasks() {
+            return this.tasks.filter(task => !task.completed)
+          },
+          completeTasks() {
+            return this.tasks.filter(task => task.completed)
+          }
+        },
+    
+      });
+
+
+    
+    
     </script>
   </body>
 </html>
