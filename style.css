@@ -1,0 +1,51 @@
+body {
+  background: #c6d2c6;
+  height: 100%;
+}
+html {
+    height: 100%;
+}
+.is__red {
+  color: red;
+}
+.is__loading {
+  background: red;
+}
+ul,
+li {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style-type: none;
+}
+.bg__primary {
+  background: #74b9ff;
+  color: #fff;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
+}
+.bg__warning {
+  background: #f9ca24;
+  color: #fff;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
+}
+.bg__success {
+  background: #badc58;
+  color: #fff;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
+}
+.task__row--first .btn {
+  font-size: 0.4rem;
+}
+.list-group-item {
+  border: none;
+}
+hr {
+  margin-bottom: 0;
+}
+#root,
+#root__2,
+#root__3, 
+#root__4 {
+  display: none;
+}
